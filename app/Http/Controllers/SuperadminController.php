@@ -18,10 +18,7 @@ class SuperadminController extends Controller
 
     public function index()
     {
-        $pns = M_pegawai::where('status_pegawai', 'pns')->count();
-        $pkkk = M_pegawai::where('status_pegawai', 'pkkk')->count();
-        $nonasn = M_pegawai::where('status_pegawai', 'non asn')->count();
-        return view('superadmin.home', compact('pns', 'pkkk', 'nonasn'));
+        return view('superadmin.home');
     }
 
     public function bandingkan()

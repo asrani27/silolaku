@@ -13,7 +13,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">UNIT KERJA</span>
-        <span class="info-box-number">{{$pns}}</span>
+        <span class="info-box-number">28</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -31,7 +31,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PENGHASILAN BULAN INI</span>
-        <span class="info-box-number">Rp. {{$pkkk}}</span>
+        <span class="info-box-number">Rp.</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -49,7 +49,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PENGHASILAN BULAN SEBELUMNYA</span>
-        <span class="info-box-number">Rp. {{$nonasn}}</span>
+        <span class="info-box-number">Rp. </span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
