@@ -89,6 +89,11 @@ class AdminController extends Controller
         return view('admin.home', compact('penghasilanHariIni', 'penghasilanMingguIni', 'penghasilanBulanIni', 'data', 'grafik', 'year'));
     }
 
+    public function delete($id)
+    {
+        Penghasilan::find($id)->delete();
+        return back();
+    }
     public function updatePenghasilan(Request $req)
     {
         Penghasilan::find($req->id_penghasilan)->update([

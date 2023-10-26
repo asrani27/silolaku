@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('beranda', [AdminController::class, 'beranda']);
         Route::post('penghasilan', [AdminController::class, 'storePenghasilan']);
         Route::post('penghasilan/update', [AdminController::class, 'updatePenghasilan']);
+        Route::get('penghasilan/delete/{id}', [AdminController::class, 'delete']);
     });
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
