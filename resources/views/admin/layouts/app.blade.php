@@ -50,9 +50,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/superadmin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
+            <li><a href="/admin/beranda"><i class="fa fa-fw fa-dashboard"></i> DASHBOARD <span class="sr-only">(current)</span></a></li>
             
-            <li><a href="/superadmin/beranda"><i class="fa fa-fw fa-user"></i> PROFIL <span class="sr-only"></span></a></li>
+            <li><a href="/admin/gantipass"><i class="fa fa-fw fa-key"></i> GANTI PASS <span class="sr-only"></span></a></li>
             
           </ul>
           

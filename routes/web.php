@@ -94,8 +94,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('penghasilan/update', [AdminController::class, 'updatePenghasilan']);
     });
 });
-Route::group(['middleware' => ['auth', 'role:superadmin|pegawai|admin']], function () {
+Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
     Route::get('/logout', [LogoutController::class, 'logout']);
+    Route::get('/admin/gantipass', [GantiPassController::class, 'admin']);
+    Route::post('/admin/gantipass', [GantiPassController::class, 'updateAdmin']);
 
     Route::get('gantipass', [GantiPassController::class, 'index']);
     Route::post('gantipass', [GantiPassController::class, 'update']);

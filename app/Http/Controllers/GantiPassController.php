@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Session;
 
 class GantiPassController extends Controller
 {
+    public function admin()
+    {
+        return view('admin.gantipass');
+    }
+    public function updateAdmin(Request $req)
+    {
+        return view('gantipass');
+    }
     public function index()
     {
         return view('gantipass');
