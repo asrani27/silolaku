@@ -92,7 +92,7 @@ DASHBOARD ADMIN
                 <td>Rp. {{number_format($item->nominal)}},-</td>
                 <td>
                   <a href="#" class="btn btn-xs btn-flat btn-success edit-penghasilan" data-id="{{$item->id}}" data-nominal="{{$item->nominal}}" data-tanggal="{{$item->tanggal}}"><i class="fa fa-edit"></i></a>
-                  <a href="/admin/penghasilan/delete/"
+                  <a href="/admin/penghasilan/delete/{{$item->id}}"
                       onclick="return confirm('Yakin ingin di hapus');"
                       class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
                 </td>
