@@ -215,12 +215,16 @@ DASHBOARD ADMIN
 
 <script>
   window.onload = function () {
-  
+    
+      dataGrafik = {!!json_encode($grafik)!!}
+      year = {!!json_encode($year)!!}
+      
+
   var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
     theme: "light2", // "light1", "light2", "dark1", "dark2"
     title:{
-      text: "Tahun 2023"
+      text: "Tahun " + year
     },
     // axisY: {
     //   title: "Reserves(MMbbl)"
@@ -228,16 +232,7 @@ DASHBOARD ADMIN
     data: [{        
       type: "column",  
       showInLegend: true, 
-      dataPoints: [      
-        { y: 300878, label: "Januari" },
-        { y: 266455,  label: "Februari" },
-        { y: 169709,  label: "Maret" },
-        { y: 158400,  label: "April" },
-        { y: 142503,  label: "Mei" },
-        { y: 101500, label: "Juni" },
-        { y: 97800,  label: "Juli" },
-        { y: 80000,  label: "Agustus" }
-      ]
+      dataPoints: dataGrafik
     }]
   });
   chart.render();

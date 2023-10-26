@@ -24,7 +24,69 @@ class AdminController extends Controller
         )->sum('nominal');
         $penghasilanBulanIni = Penghasilan::whereMonth('tanggal', $month)->whereYear('tanggal', $year)->sum('nominal');
 
-        return view('admin.home', compact('penghasilanHariIni', 'penghasilanMingguIni', 'penghasilanBulanIni', 'data'));
+        $grafik = [
+            [
+                'label' => 'Januari',
+                'x' => 0,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '01')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Februari',
+                'x' => 1,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '02')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Maret',
+                'x' => 2,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '03')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'April',
+                'x' => 3,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '04')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Mei',
+                'x' => 4,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '05')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Juni',
+                'x' => 5,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '06')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Juli',
+                'x' => 6,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '07')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Agustus',
+                'x' => 7,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '08')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'September',
+                'x' => 8,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '09')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Oktober',
+                'x' => 9,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '10')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'November',
+                'x' => 10,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '11')->whereYear('tanggal', $year)->sum('nominal'),
+            ],
+            [
+                'label' => 'Desember',
+                'x' => 11,
+                'y' => (int) Penghasilan::whereMonth('tanggal', '12')->whereYear('tanggal', $year)->sum('nominal'),
+            ]
+        ];
+        return view('admin.home', compact('penghasilanHariIni', 'penghasilanMingguIni', 'penghasilanBulanIni', 'data', 'grafik', 'year'));
     }
 
     public function updatePenghasilan(Request $req)
