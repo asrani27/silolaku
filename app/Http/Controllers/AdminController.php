@@ -17,12 +17,12 @@ class AdminController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $month = Carbon::now()->month;
         $year = Carbon::now()->year;
-        $penghasilanHariIni = Penghasilan::where('tanggal', $today)->sum('nominal');
-        $penghasilanMingguIni = Penghasilan::whereBetween(
+        $penghasilanHariIni = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->where('tanggal', $today)->sum('nominal');
+        $penghasilanMingguIni = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->whereBetween(
             'tanggal',
             [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]
         )->sum('nominal');
-        $penghasilanBulanIni = Penghasilan::whereMonth('tanggal', $month)->whereYear('tanggal', $year)->sum('nominal');
+        $penghasilanBulanIni = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->sum('nominal');
 
         $grafik = [
             [
