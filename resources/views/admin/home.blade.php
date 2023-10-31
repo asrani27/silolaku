@@ -89,7 +89,7 @@ DASHBOARD ADMIN
               @foreach ($data as $item)
               <tr>
                 <td><b>{{\Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y')}}</b></a></td>
-                <td>Rp. {{number_format($item->nominal)}},-</td>
+                <td>Rp. {{number_format($item->nominal,2)}},-</td>
                 <td>
                   <a href="#" class="btn btn-xs btn-flat btn-success edit-penghasilan" data-id="{{$item->id}}" data-nominal="{{$item->nominal}}" data-tanggal="{{$item->tanggal}}"><i class="fa fa-edit"></i></a>
                   <a href="/admin/penghasilan/delete/{{$item->id}}"
@@ -162,7 +162,7 @@ DASHBOARD ADMIN
                   </div>
                   <div class="form-group">
                       <label>Nominal</label>
-                      <input type="text" class="form-control" name="nominal" onkeypress="return hanyaAngka(event)" required>
+                      <input type="text" class="form-control" name="nominal" onkeypress="return isNumberKey(event)"  required>
                   </div>
               </div>
 
@@ -196,7 +196,7 @@ DASHBOARD ADMIN
                   </div>
                   <div class="form-group">
                       <label>Nominal</label>
-                      <input type="text" class="form-control" id="nominal" name="nominal" onkeypress="return hanyaAngka(event)" required>
+                      <input type="text" class="form-control" id="nominal" name="nominal" onkeypress="return isNumberKey(event)"  required>
                   </div>
                       <input type="hidden" class="form-control" name="id_penghasilan" readonly id="id_penghasilan">
               </div>
@@ -254,12 +254,14 @@ DASHBOARD ADMIN
   });
 </script>
 <script>
-  function hanyaAngka(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
-     if (charCode > 31 && (charCode < 48 || charCode > 57))
+ function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
 
-      return false;
-    return true;
-  }
+          return true;
+       }
 </script>
 @endpush
