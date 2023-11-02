@@ -135,7 +135,10 @@ class AdminController extends Controller
             Session::flash('success', 'Berhasil Disimpan');
             return back();
         } else {
-            Session::flash('error', 'Tanggal Tersebut sudah ada');
+            $check->update([
+                'nominal' => $req->nominal
+            ]);
+            Session::flash('success', 'Berhasil Di Update');
             return back();
         }
     }
