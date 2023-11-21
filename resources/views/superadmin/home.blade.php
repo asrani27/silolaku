@@ -157,7 +157,8 @@ DASHBOARD
             label:d.nama,
           }
       })
-      
+      const total = Number(dataPoints.reduce((current, value) => current += value.y, 0).toFixed(2))
+      console.log({total});
       var chart = new CanvasJS.Chart("chartContainer"+element.month, {
         animationEnabled: true,
         title: {
