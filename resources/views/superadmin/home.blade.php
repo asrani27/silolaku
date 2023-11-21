@@ -153,7 +153,7 @@ DASHBOARD
       //console.log(dataPuskesmas);
       var dataPoints = dataPuskesmas.map((d)=>{
           return {
-            y:Number(d.penghasilan),
+            y:Number(Number(d.penghasilan).toFixed(2)),
             label:d.nama,
           }
       })
