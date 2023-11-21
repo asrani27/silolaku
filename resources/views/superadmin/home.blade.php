@@ -157,12 +157,16 @@ DASHBOARD
             label:d.nama,
           }
       })
+      const currency = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+});
       const total = Number(dataPoints.reduce((current, value) => current += value.y, 0).toFixed(2))
       //console.log({total});
       var chart = new CanvasJS.Chart("chartContainer"+element.month, {
         animationEnabled: true,
         title: {
-          text: "Penghasilan Puskesmas Bulan : "+ namaBulan(element.month) +" "+ element.year+", Rp., "+ total,
+          text: "Penghasilan Puskesmas Bulan : "+ namaBulan(element.month) +" "+ element.year+", Rp., "+ currency.format(total),
           fontSize:20,
         },
         axisX:{
