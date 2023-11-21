@@ -7,7 +7,7 @@ DASHBOARD
 @endsection
 @section('content')
 <div class="row">
-  <div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="col-md-3 col-sm-3 col-xs-12">
     <div class="info-box bg-blue-gradient">
       <span class="info-box-icon"><i class="fa fa-university"></i></span>
   
@@ -25,7 +25,7 @@ DASHBOARD
     </div>
   </div>
   
-  <div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="col-md-3 col-sm-3 col-xs-12">
     <div class="info-box bg-purple-gradient">
       <span class="info-box-icon"><i class="fa fa-money"></i></span>
   
@@ -43,7 +43,7 @@ DASHBOARD
     </div>
   </div>
   
-  <div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="col-md-3 col-sm-3 col-xs-12">
     <div class="info-box bg-red-gradient">
       <span class="info-box-icon"><i class="fa fa-money"></i></span>
   
@@ -60,84 +60,133 @@ DASHBOARD
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-8">
-    <div class="box">
-    <div class="box-body">
-      {{-- <div id="chartContainer" style="height: 500px; width: 100%;"></div> --}}
-    </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="box">
-    <div class="box-body">
-      
-    </div>
-    </div>
-  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="info-box bg-green-gradient">
+      <span class="info-box-icon"><i class="fa fa-money"></i></span>
   
+      <div class="info-box-content">
+        <span class="info-box-text">TAHUN</span>
+        <span class="info-box-number">{{\Carbon\Carbon::now()->format('Y')}} </span>
+  
+        <div class="progress">
+          <div class="progress-bar" style="width: 100%"></div>
+        </div>
+        <span class="progress-description">
+             Total Penghasilan Bulan Sebelumnya
+            </span>
+      </div>
+    </div>
+  </div>
 </div>
+
+@foreach ($hasil as $key => $item)
+    
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-clipboard"></i> Grafik {{namaBulan($item['month'])}} {{$item['year']}}</h3>
+        <div class="box-tools">
+        </div>
+      </div>
+      <div class="box-body">
+        <div id="chartContainer{{$item['month']}}" style="height: 700px; width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 @endsection
 @push('js')
 <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
 <script>
+  function namaBulan($bulan)
+{
+    if ($bulan == '01') {
+        $nama_bulan = 'Januari';
+    }
+    if ($bulan == '02') {
+        $nama_bulan = 'Februari';
+    }
+    if ($bulan == '03') {
+        $nama_bulan = 'Maret';
+    }
+    if ($bulan == '04') {
+        $nama_bulan = 'April';
+    }
+    if ($bulan == '05') {
+        $nama_bulan = 'Mei';
+    }
+    if ($bulan == '06') {
+        $nama_bulan = 'Juni';
+    }
+    if ($bulan == '07') {
+        $nama_bulan = 'Juli';
+    }
+    if ($bulan == '08') {
+        $nama_bulan = 'Agustus';
+    }
+    if ($bulan == '09') {
+        $nama_bulan = 'September';
+    }
+    if ($bulan == '10') {
+        $nama_bulan = 'Oktober';
+    }
+    if ($bulan == '11') {
+        $nama_bulan = 'November';
+    }
+    if ($bulan == '12') {
+        $nama_bulan = 'Desember';
+    }
+    return $nama_bulan;
+}
+
+
   window.onload = function () {
-    
-  var chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    
-    title:{
-      text:"Penghasilan Puskesmas Bulan ini"
-    },
-    axisX:{
-      interval: 1
-    },
-    axisY2:{
-      includeZero: true,
-		scaleBreaks: {
-			type: "wavy",
-			customBreaks: [{
-				startValue: 80,
-				endValue: 210
-				},
-				{
-					startValue: 230,
-					endValue: 600
-				}
-		]}
-	},
-    data: [{
-      type: "bar",
-      name: "puskesmas",
-      toolTipContent: "<img src=\"https://canvasjs.com/wp-content/uploads/images/gallery/javascript-column-bar-charts/\"{url}\"\" style=\"width:40px; height:20px;\"> <b>{label}</b><br>Budget: ${y}bn<br>{gdp}% of GDP",
-      dataPoints: [
-        { y: 3, label: "Sweden" },
-        { y: 7, label: "Taiwan" },
-        { y: 5, label: "Russia" },
-        { y: 9, label: "Spain" },
-        { y: 7, label: "Brazil" },
-        { y: 7, label: "India" },
-        { y: 9, label: "Italy" },
-        { y: 8, label: "Australia" },
-        { y: 11, label: "Canada" },
-        { y: 15, label: "South Korea" },
-        { y: 12, label: "Netherlands" },
-        { y: 15, label: "Switzerland" },
-        { y: 25, label: "Britain" },
-        { y: 28, label: "Germany" },
-        { y: 29, label: "France" },
-        { y: 52, label: "Japan" },
-        { y: 103, label: "China" },
-        { y: 120.000, label: "US" }
-      ]
-    }]
-  });
-  chart.render();
+  var unitkerja = {!!json_encode($hasil)!!}
+  console.log(unitkerja)
   
+  unitkerja.forEach(element => {
+
+      var dataPuskesmas = element.unitkerja
+      //console.log(dataPuskesmas);
+      var dataPoints = dataPuskesmas.map((d)=>{
+          return {
+            y:Number(d.penghasilan),
+            label:d.nama,
+          }
+      })
+      console.log(dataPoints);
+      var chart = new CanvasJS.Chart("chartContainer"+element.month, {
+        animationEnabled: true,
+        title: {
+          text: "Penghasilan Puskesmas Bulan : "+ namaBulan(element.month) +" "+ element.year,
+          fontSize:20,
+        },
+        axisX:{
+          interval: 0.2,
+          labelFontSize: 10
+        },
+        
+        axisY2:{
+          interlacedColor: "rgba(1,77,101,.2)",
+          gridColor: "rgba(1,77,101,.1)",
+          //title: 
+          
+          labelFontSize:10,
+        },
+        data: [{
+          type: "bar",
+          name: "companies",
+          axisYType: "secondary",
+          color: "#014D65",
+          dataPoints: dataPoints
+        }]
+      });
+
+      chart.render();
+    });
   }
-  </script>
+</script>
 @endpush

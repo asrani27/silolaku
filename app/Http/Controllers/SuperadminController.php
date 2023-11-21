@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Nomor;
 use App\Models\Timeline;
 use App\Models\M_pegawai;
+use App\Models\Penghasilan;
 use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -18,7 +20,30 @@ class SuperadminController extends Controller
 
     public function index()
     {
-        return view('superadmin.home');
+        $period = now()->subMonths(12)->monthsUntil(now());
+
+        $data = [];
+        foreach ($period as $date) {
+            if ($date->year == Carbon::now()->year) {
+                $data[] = [
+                    'month' => $date->month,
+                    'year' => $date->year,
+                ];
+            } else {
+            }
+        }
+        krsort($data);
+
+        $result = collect($data)->map(function ($item) {
+            $item['unitkerja'] = UnitKerja::get(['id', 'nama'])->map(function ($u) use ($item) {
+                $u->penghasilan = Penghasilan::where('unit_kerja_id', $u->id)->whereMonth('tanggal', $item['month'])->whereYear('tanggal', $item['year'])->sum('nominal');
+                return $u;
+            })->toArray();
+
+            return $item;
+        });
+        $hasil = array_values($result->toArray());
+        return view('superadmin.home', compact('hasil'));
     }
 
     public function bandingkan()
