@@ -145,7 +145,7 @@ DASHBOARD
 
   window.onload = function () {
   var unitkerja = {!!json_encode($hasil)!!}
-  console.log(unitkerja)
+  
   
   unitkerja.forEach(element => {
 
@@ -157,7 +157,7 @@ DASHBOARD
             label:d.nama,
           }
       })
-      console.log(dataPoints);
+      
       var chart = new CanvasJS.Chart("chartContainer"+element.month, {
         animationEnabled: true,
         title: {
