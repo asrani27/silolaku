@@ -158,11 +158,11 @@ DASHBOARD
           }
       })
       const total = Number(dataPoints.reduce((current, value) => current += value.y, 0).toFixed(2))
-      console.log({total});
+      //console.log({total});
       var chart = new CanvasJS.Chart("chartContainer"+element.month, {
         animationEnabled: true,
         title: {
-          text: "Penghasilan Puskesmas Bulan : "+ namaBulan(element.month) +" "+ element.year,
+          text: "Penghasilan Puskesmas Bulan : "+ namaBulan(element.month) +" "+ element.year+", Rp., "+ total,
           fontSize:20,
         },
         axisX:{
