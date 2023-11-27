@@ -43,7 +43,10 @@ class SuperadminController extends Controller
             return $item;
         });
         $hasil = array_values($result->toArray());
-        return view('superadmin.home', compact('hasil'));
+        $bulanini = collect($hasil[0]['unitkerja'])->sum('penghasilan');
+        $bulansebelumnya = collect($hasil[1]['unitkerja'])->sum('penghasilan');
+
+        return view('superadmin.home', compact('hasil', 'bulanini', 'bulansebelumnya'));
     }
 
     public function bandingkan()

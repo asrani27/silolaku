@@ -31,7 +31,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PENGHASILAN BULAN INI</span>
-        <span class="info-box-number">Rp.</span>
+        <span class="info-box-number">Rp. {{number_format($bulanini,2)}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
@@ -49,7 +49,7 @@ DASHBOARD
   
       <div class="info-box-content">
         <span class="info-box-text">PENGHASILAN BULAN SEBELUMNYA</span>
-        <span class="info-box-number">Rp. </span>
+        <span class="info-box-number">Rp. {{number_format($bulansebelumnya,2)}}</span>
   
         <div class="progress">
           <div class="progress-bar" style="width: 100%"></div>
