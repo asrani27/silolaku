@@ -34,8 +34,8 @@ class AdminController extends Controller
             ];
         }
 
-        $data = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->orderBy('tanggal', 'DESC')->get();
-
+        $data = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->orderBy('tanggal', 'DESC')->paginate(10);
+        //dd($data);
         $today = Carbon::now()->format('Y-m-d');
         $month = Carbon::now()->month;
         $year = Carbon::now()->year;

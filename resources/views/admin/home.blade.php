@@ -71,7 +71,7 @@ DASHBOARD ADMIN
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="" class="table table-bordered table-striped">
           <thead>
           <tr>
             <th>Tanggal</th>
@@ -102,9 +102,11 @@ DASHBOARD ADMIN
           </tr>
           </tfoot>
         </table>
+        {{$data->links()}}
       </div>
       <!-- /.box-body -->
     </div>
+        
     <!-- /.box -->
   </div>
   <!-- /.col -->
@@ -119,7 +121,7 @@ DASHBOARD ADMIN
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="" class="table table-bordered table-striped">
           <thead>
           <tr>
             <th>Bulan</th>
@@ -161,7 +163,7 @@ DASHBOARD ADMIN
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="" class="table table-bordered table-striped">
           <thead>
           <tr>
             <th>Tahun</th>
