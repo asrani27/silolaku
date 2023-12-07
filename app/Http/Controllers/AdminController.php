@@ -34,7 +34,7 @@ class AdminController extends Controller
             ];
         }
 
-        $data = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->orderBy('tanggal', 'DESC');
+        $data = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->orderBy('tanggal', 'DESC')->get();
 
         $today = Carbon::now()->format('Y-m-d');
         $month = Carbon::now()->month;
