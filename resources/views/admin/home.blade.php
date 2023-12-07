@@ -63,71 +63,139 @@ DASHBOARD ADMIN
 
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-xs-12">
     <a href="#" class="btn btn-primary btn-block margin-bottom penghasilan" style="border-radius: 25px;"><i class="fa fa-money"></i> INPUT PENGHASILAN</a>
-
-    <div class="box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">Penghasilan Terkini</h3>
-
-        <div class="box-tools">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-        </div>
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Data Penghasilan Per Tanggal</h3>
       </div>
-      <div class="box-body no-padding">
-        
-        
-        <div class="table-responsive mailbox-messages">
-          <table class="table table-hover table-striped">
-            <tbody>
-              <tr style="background-color: #605ca8; color:#fff">
-                <th>Tanggal</th>
-                <th>Nominal</th>
-                <th></th>
-              </tr>
-              @foreach ($data as $item)
-              <tr>
-                <td><b>{{\Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y')}}</b></a></td>
-                <td>Rp. {{number_format($item->nominal,2)}},-</td>
-                <td>
-                  <a href="#" class="btn btn-xs btn-flat btn-success edit-penghasilan" data-id="{{$item->id}}" data-nominal="{{$item->nominal}}" data-tanggal="{{$item->tanggal}}"><i class="fa fa-edit"></i></a>
-                  <a href="/admin/penghasilan/delete/{{$item->id}}"
-                      onclick="return confirm('Yakin ingin di hapus');"
-                      class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-          <!-- /.table -->
-        </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jumlah</th>
+            <th>Aksi</th>
+          </tr>
+          </thead>
+          <tbody>
+            
+            @foreach ($data as $item)
+            <tr>
+              <td><b>{{\Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y')}}</b></a></td>
+              <td>Rp. {{number_format($item->nominal,2)}},-</td>
+              <td>
+                <a href="#" class="btn btn-xs btn-flat btn-success edit-penghasilan" data-id="{{$item->id}}" data-nominal="{{$item->nominal}}" data-tanggal="{{$item->tanggal}}"><i class="fa fa-edit"></i></a>
+                <a href="/admin/penghasilan/delete/{{$item->id}}"
+                    onclick="return confirm('Yakin ingin di hapus');"
+                    class="btn btn-xs btn-flat  btn-danger"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jumlah</th>
+            <th>Aksi</th>
+          </tr>
+          </tfoot>
+        </table>
       </div>
       <!-- /.box-body -->
     </div>
-    <!-- /. box -->{{-- 
-    <div class="box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">Labels</h3>
-
-        <div class="box-tools">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
-        </ul>
-      </div>
-      <!-- /.box-body -->
-    </div> --}}
     <!-- /.box -->
   </div>
   <!-- /.col -->
-  <div class="col-md-9">
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Data Penghasilan Per Bulan</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Bulan</th>
+            <th>Tahun</th>
+            <th>Jumlah</th>
+          </tr>
+          </thead>
+          <tbody>
+            
+            @foreach ($bulantahun as $item)
+            <tr>
+              <td><b>{{$item['namabulan']}}</b></td>
+              <td><b>{{$item['year']}}</b></td>
+              <td>Rp. {{number_format($item['penghasilan'],2)}},-</td>
+            </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jumlah</th>
+            <th>Aksi</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Data Penghasilan Per Tahun</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Tahun</th>
+            <th>Jumlah</th>
+          </tr>
+          </thead>
+          <tbody>
+            
+            @foreach ($tahunterakhir as $item)
+            <tr>
+              <td><b>{{$item['year']}}</b></td>
+              <td>Rp. {{number_format($item['penghasilan'],2)}},-</td>
+            </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jumlah</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+</div>
+
+
+<div class="row">
+  
+  <div class="col-md-12">
     <div class="box box-primary">
       
       <!-- /.box-header -->

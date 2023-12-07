@@ -12,6 +12,28 @@ class AdminController extends Controller
 {
     public function beranda()
     {
+        $period = now()->subMonths(12)->monthsUntil(now());
+
+        $duabelasbulan = [];
+        foreach ($period as $date) {
+            $duabelasbulan[] = [
+                'namabulan' => $date->translatedFormat('F'),
+                'month' => $date->month,
+                'year' => $date->year,
+                'penghasilan' => Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->whereMonth('tanggal', $date->month)->whereYear('tanggal', $date->year)->sum('nominal'),
+            ];
+        }
+        $bulantahun = array_reverse($duabelasbulan);
+
+        $tahun = range(Carbon::now()->year, 2022);
+        $tahunterakhir = [];
+        foreach ($tahun as $y) {
+            $tahunterakhir[] = [
+                'year' => $y,
+                'penghasilan' => Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->whereYear('tanggal', $y)->sum('nominal'),
+            ];
+        }
+
         $data = Penghasilan::where('unit_kerja_id', Auth::user()->unitkerja->id)->orderBy('tanggal', 'DESC')->paginate(15);
 
         $today = Carbon::now()->format('Y-m-d');
@@ -86,7 +108,7 @@ class AdminController extends Controller
                 'y' => (int) Penghasilan::whereMonth('tanggal', '12')->whereYear('tanggal', $year)->sum('nominal'),
             ]
         ];
-        return view('admin.home', compact('penghasilanHariIni', 'penghasilanMingguIni', 'penghasilanBulanIni', 'data', 'grafik', 'year'));
+        return view('admin.home', compact('tahunterakhir', 'penghasilanHariIni', 'penghasilanMingguIni', 'penghasilanBulanIni', 'data', 'grafik', 'year', 'bulantahun'));
     }
 
     public function delete($id)
